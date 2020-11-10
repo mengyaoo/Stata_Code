@@ -8,15 +8,15 @@ set more off, permanently
 clear all
 
 *global directory "/Users/yaoliu/Dropbox/Columbia/Working Paper/Co_authored Project/With_Shirley/Corporate Citizen/2 Data"
-global directory "/Users/yl4689/Dropbox/Columbia/Working Paper/Co_authored Project/With_Shirley/Corporate Citizen/2 Data"
+global directory "~"
 *global directory "C:\Users\slu11\Dropbox\Master Research\Corporate Citizen\2 Data"
 cd "$directory"
 
 
 
-use 1_combined\RA_replication\zip_analysis_clean.dta, clear
+* use 1_combined\RA_replication\zip_analysis_clean.dta, clear
 
-use 1_combined/RA_replication/zip_analysis_clean.dta, clear
+use zip_analysis_clean.dta, clear
 
 ** keep pre
 keep if date_policy_t<0
