@@ -8,12 +8,12 @@ set more off, permanently
 clear all
 
 *global directory "/Users/yaoliu/Dropbox/Columbia/Working Paper/Co_authored Project/With_Shirley/Corporate Citizen/2 Data"
-global directory "C:\Users\slu11\Dropbox\Master Research\Corporate Citizen\2 Data"
+global directory "~"
 cd "$directory"
 
 
 
-use 1_combined\RA_replication\zip_analysis_clean, clear
+use zip_analysis_clean, clear
 
 ******************* Clean data *********************
 ** keep pre
@@ -47,9 +47,9 @@ estadd local citydayFE "No"
 estadd local countydayFE "No"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
-esttab using 2_output/table_main.rtf, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
+esttab using table_main.rtf, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
 ** only for this table I include below the same output but in latex format
-esttab using 2_output/table_main.tex, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
+esttab using table_main.tex, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
 
 ******************* Robustness *********************
 ** Robust appendix: cutoff by population and establishments 
@@ -75,7 +75,7 @@ estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Pop>5000 Est>5"
-esttab using 2_output/table_appendix_limitpop.rtf, replace label title(Change in Device at Home Days before Policy Intervention: Sample Sensitivity) noobs s(N r2_a zipFE countydayFE sample cluster, label("N" "Adj. R-squared" "Zip-code FE" "County-Day FE" "Sample" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary)
+esttab using table_appendix_limitpop.rtf, replace label title(Change in Device at Home Days before Policy Intervention: Sample Sensitivity) noobs s(N r2_a zipFE countydayFE sample cluster, label("N" "Adj. R-squared" "Zip-code FE" "County-Day FE" "Sample" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary)
 
 
 ** Robust: Full time work ratio
@@ -99,7 +99,7 @@ estadd local citydayFE "No"
 estadd local countydayFE "No"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
-esttab using 2_output/table_main_ftwork.rtf, replace label title(Change in Full-Time-Work Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
+esttab using table_main_ftwork.rtf, replace label title(Change in Full-Time-Work Ratio 20 Days before Policy Intervention) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled social_capital_county) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
 
 
 
@@ -121,5 +121,5 @@ estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "30 Days"
-esttab using 2_output/table_main_day.rtf, replace label title(Change in Device at Home Days before Policy Intervention: Days Sensitivity) noobs s(N r2_a countydayFE sample cluster, label("N" "Adj. R-squared" "County-Day FE" "Period Before Policy" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_10day* 0.prepolicy_20day* 0.prepolicy_30day* demo_asian population_log establishment_log teleworkable_emp_establish 1.prepolicy_10day 1.prepolicy_20day 1.prepolicy_30day exposure_total_scaled) order(1.prepolicy_10day#c.exposure_total_scaled  1.prepolicy_20day#c.exposure_total_scaled  1.prepolicy_30day#c.exposure_total_scaled )
+esttab using table_main_day.rtf, replace label title(Change in Device at Home Days before Policy Intervention: Days Sensitivity) noobs s(N r2_a countydayFE sample cluster, label("N" "Adj. R-squared" "County-Day FE" "Period Before Policy" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_10day* 0.prepolicy_20day* 0.prepolicy_30day* demo_asian population_log establishment_log teleworkable_emp_establish 1.prepolicy_10day 1.prepolicy_20day 1.prepolicy_30day exposure_total_scaled) order(1.prepolicy_10day#c.exposure_total_scaled  1.prepolicy_20day#c.exposure_total_scaled  1.prepolicy_30day#c.exposure_total_scaled )
 
