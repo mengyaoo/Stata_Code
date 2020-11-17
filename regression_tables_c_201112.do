@@ -208,7 +208,7 @@ estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "10 Days"
 estadd local control "Yes"
-eststo: qui reghdfe device_home_ratio i.prepolicy_10day c.exposure_total_scaled i.prepolicy_10day#c.exposure_total_scaled  `control'  i.prepolicy_10day#c.demo_asian i.prepolicy_10day#c.population_log i.prepolicy_10day#c.establishment_log i.prepolicy_10day#c.teleworkable_emp_establish, absorb(county_fips#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled  `control'  i.prepolicy_10day#c.demo_asian i.prepolicy_10day#c.population_log i.prepolicy_10day#c.establishment_log i.prepolicy_10day#c.teleworkable_emp_establish, absorb(county_fips#date zipcode) vce(cluster state_fips)
 estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
@@ -226,8 +226,8 @@ estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "40 Days"
 estadd local control "Yes"
-esttab using c_10day/table_appendix_day.rtf, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control zipFE countydayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "Zip-code FE"  "County-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
-esttab using c_10day/table_appendix_day.tex, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control zipFE countydayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "Zip-code FE"  "County-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
+esttab using c_10day/table_appendix_day.rtf, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control zipFE countydayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "Zip-code FE"  "County-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
+esttab using c_10day/table_appendix_day.tex, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control zipFE countydayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "Zip-code FE"  "County-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
 
 
 
