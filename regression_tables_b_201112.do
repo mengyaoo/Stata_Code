@@ -136,8 +136,8 @@ estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "High BoardEx Fraction"
-esttab using b_tr/table_cross_trust.rtf, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample zipFE  countydayFE  cluster, label("N" "Adj. R-squared" "Sample" "Zip-code FE" "County-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
-esttab using b_tr/table_cross_trust.tex, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample zipFE  countydayFE  cluster, label("N" "Adj. R-squared" "Sample" "Zip-code FE" "County-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
+esttab using b_tr/table_cross_trust.rtf, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample zipFE  countydayFE  cluster, label("N" "Adj. R-squared" "Sample" "Zip-code FE" "County-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled_tr) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
+esttab using b_tr/table_cross_trust.tex, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample zipFE  countydayFE  cluster, label("N" "Adj. R-squared" "Sample" "Zip-code FE" "County-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled_tr) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
 
 
 ** Cross sectional B: Political Affiliation
@@ -202,7 +202,7 @@ esttab using b_tr/table_cross_telework.tex, replace label title(Cross Sectional:
 ** Robustness by days
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
 eststo clear
-eststo: qui reghdfe device_home_ratio i.prepolicy_10day c.exposure_total_scaled i.prepolicy_10day#c.exposure_total_scaled  `control'  i.prepolicy_10day#c.demo_asian i.prepolicy_10day#c.population_log i.prepolicy_10day#c.establishment_log i.prepolicy_10day#c.teleworkable_emp_establish, absorb(county_fips#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_10day c.exposure_total_scaled_tr i.prepolicy_10day#c.exposure_total_scaled_tr  `control'  i.prepolicy_10day#c.demo_asian i.prepolicy_10day#c.population_log i.prepolicy_10day#c.establishment_log i.prepolicy_10day#c.teleworkable_emp_establish, absorb(county_fips#date zipcode) vce(cluster state_fips)
 estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
@@ -234,17 +234,17 @@ esttab using b_tr/table_appendix_day.tex, replace label title(Robustness: Days S
 ** Robustness by sample
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
 eststo clear
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>5000 & establishment>5, absorb(county_fips#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled_tr i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>5000 & establishment>5, absorb(county_fips#date zipcode) vce(cluster state_fips)
 estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Pop>5000 Est>5"
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>10000 & establishment>5, absorb(county_fips#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled_tr i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>10000 & establishment>5, absorb(county_fips#date zipcode) vce(cluster state_fips)
 estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Pop>10000 Est>5"
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>10000 & establishment>7, absorb(county_fips#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled_tr i.prepolicy_20day#c.exposure_total_scaled_tr  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if Population>10000 & establishment>7, absorb(county_fips#date zipcode) vce(cluster state_fips)
 estadd local zipFE "Yes"
 estadd local countydayFE "Yes"
 estadd local cluster "State"
