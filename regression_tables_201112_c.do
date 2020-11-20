@@ -8,7 +8,7 @@ set more off, permanently
 clear all
 
 *global directory "/Users/yaoliu/Dropbox/Columbia/Working Paper/Co_authored Project/With_Shirley/Corporate Citizen/2 Data"
-global directory "~"
+global directory "/shared/share_lisa-he"
 cd "$directory"
 
 
