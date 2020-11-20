@@ -13,7 +13,7 @@ cd "$directory"
 
 
 
-use 1_combined\RA_replication\zip_analysis_clean, clear
+use zip_analysis_clean, clear
 
 ******************* Clean data *********************
 ** keep pre
