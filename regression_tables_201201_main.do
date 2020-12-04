@@ -40,6 +40,7 @@ estadd local cityFE "Yes"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 esttab using 201201_main/table_robust_ftwork.rtf, replace label title(Robustness: Full-Time Work Ratio) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day)
+esttab using 201201_main/table_robust_ftwork.tex, replace label title(Robustness: Full-Time Work Ratio) noobs s(N r2_a zipFE citydayFE countydayFE statedayFE cluster, label("N" "Adj. R-squared" "Zip-code FE" "City-Day FE"  "County-Day FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day)
 
 ** Robust B: Employment-weighted exposure
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
@@ -55,6 +56,7 @@ estadd local statedayFE "Yes"
 estadd local sample "<=10%"
 estadd local cluster "State"
 esttab using 201201_main/table_robust_employeeweight.rtf, replace label title(Robustness: Weight by Employees) noobs s(N r2_a sample  cityFE  statedayFE  cluster, label("N" "Adj. R-squared"   "Exposure Employee-Weight" "Cuty FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled)
+esttab using 201201_main/table_robust_employeeweight.tex, replace label title(Robustness: Weight by Employees) noobs s(N r2_a sample  cityFE  statedayFE  cluster, label("N" "Adj. R-squared"   "Exposure Employee-Weight" "Cuty FE"  "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled)
 
 ** Robust C: Placebo
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
@@ -80,6 +82,7 @@ estadd local statedayFE "Yes"
 estadd local sample "High"
 estadd local cluster "State"
 esttab using 201201_main/table_robust_placebo.rtf, replace label title(Robustness: Placebo) noobs s(N r2_a sample cityFE  statedayFE  cluster, label("N" "Adj. R-squared" "China-Italy Ratio"  "City FE"  "State-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled placebo_exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary  *0.placebo_exposure_binary 1.placebo_exposure_binary 0.prepolicy_20day*) order( 1.prepolicy_20day#c.placebo_exposure_total_scaled  1.prepolicy_20day#1.placebo_exposure_binary 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary )
+esttab using 201201_main/table_robust_placebo.tex, replace label title(Robustness: Placebo) noobs s(N r2_a sample cityFE  statedayFE  cluster, label("N" "Adj. R-squared" "China-Italy Ratio"  "City FE"  "State-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled placebo_exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary  *0.placebo_exposure_binary 1.placebo_exposure_binary 0.prepolicy_20day*) order( 1.prepolicy_20day#c.placebo_exposure_total_scaled  1.prepolicy_20day#1.placebo_exposure_binary 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary )
 
 ******************* Cross Sectional *********************
 ** Cross sectional A: Trust
@@ -106,6 +109,7 @@ estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "High BoardEx Fraction"
 esttab using 201201_main/table_cross_trust.rtf, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample cityFE  statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
+esttab using 201201_main/table_cross_trust.tex, replace label title(Cross Sectional: Trust) noobs s(N r2_a  sample cityFE  statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"   "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day exposure_total_scaled)
 
 
 ** Cross sectional B: Political Affiliation
@@ -122,6 +126,7 @@ estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Democratic Mayor"
 esttab using 201201_main/table_cross_party.rtf, replace label title(Cross Sectional: Political Affiliation) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City-code FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled)
+esttab using 201201_main/table_cross_party.tex, replace label title(Cross Sectional: Political Affiliation) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City-code FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled)
 
 
 ** Cross sectional C: Teleworkability
@@ -152,6 +157,7 @@ estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "75%"
 esttab using 201201_main/table_cross_telework.rtf, replace label title(Cross Sectional: Teleworkability) noobs s(N r2_a sample statedayFE  cluster, label("N" "Adj. R-squared" "Teleworkability" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons ) order(exposure_total_scaled)
+esttab using 201201_main/table_cross_telework.tex, replace label title(Cross Sectional: Teleworkability) noobs s(N r2_a sample statedayFE  cluster, label("N" "Adj. R-squared" "Teleworkability" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons ) order(exposure_total_scaled)
 
 
 ******************* Appendix *********************
@@ -183,6 +189,7 @@ estadd local cluster "State"
 estadd local sample "40 Days"
 estadd local control "Yes"
 esttab using 201201_main/table_appendix_day.rtf, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "City FE"  "State-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
+esttab using 201201_main/table_appendix_day.tex, replace label title(Robustness: Days Sensitivity) noobs s(N r2_a sample control cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Period Before Policy" "Interacted Control" "City FE"  "State-Day FE" "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) keep(1.prepolicy_10day#c.exposure_total_scaled 1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_30day#c.exposure_total_scaled 1.prepolicy_40day#c.exposure_total_scaled )
 
 
 
@@ -210,6 +217,7 @@ estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Pop>5000 Est>5"
 esttab using 201201_main/table_appendix_limitpop.rtf, replace label title(Robustness: Sample Sensitivity) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary)
+esttab using 201201_main/table_appendix_limitpop.tex, replace label title(Robustness: Sample Sensitivity) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_scaled *0.any_exposure_binary 1.any_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day#1.any_exposure_binary)
 
 
 ** Robustness by country
@@ -236,6 +244,7 @@ estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "Italy"
 esttab using 201201_main/table_appendix_country.rtf, replace label title(Robustness: Country Sensitivity) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_china_scaled exposure_total_italy_scaled *0.china_exposure_binary 1.china_exposure_binary  *0.italy_exposure_binary 1.italy_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_china_scaled 1.prepolicy_20day#1.china_exposure_binary 1.prepolicy_20day#c.exposure_total_italy_scaled  1.prepolicy_20day#1.italy_exposure_binary)
+esttab using 201201_main/table_appendix_country.tex, replace label title(Robustness: Country Sensitivity) noobs s(N r2_a sample cityFE statedayFE  cluster, label("N" "Adj. R-squared" "Sample" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day exposure_total_china_scaled exposure_total_italy_scaled *0.china_exposure_binary 1.china_exposure_binary  *0.italy_exposure_binary 1.italy_exposure_binary 0.prepolicy_20day*) order(1.prepolicy_20day#c.exposure_total_china_scaled 1.prepolicy_20day#1.china_exposure_binary 1.prepolicy_20day#c.exposure_total_italy_scaled  1.prepolicy_20day#1.italy_exposure_binary)
 
 ** Robustness by binary variable
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
@@ -245,3 +254,4 @@ estadd local cityFE "Yes"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 esttab using 201201_main/table_appendix_binary.rtf, replace label title(Robustness: Binary Exposure Variable) noobs s(N r2_a cityFE statedayFE cluster, label("N" "Adj. R-squared" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day *0.any_exposure_binary 1.any_exposure_binary) order(1.prepolicy_20day#1.any_exposure_binary 1.prepolicy_20day)
+esttab using 201201_main/table_appendix_binary.tex, replace label title(Robustness: Binary Exposure Variable) noobs s(N r2_a cityFE statedayFE cluster, label("N" "Adj. R-squared" "City FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day *0.any_exposure_binary 1.any_exposure_binary) order(1.prepolicy_20day#1.any_exposure_binary 1.prepolicy_20day)
