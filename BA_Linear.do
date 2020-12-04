@@ -1,7 +1,7 @@
 set more off, permanently
 clear all
 
-global directory "/shared/share_lisa-he"
+global directory "~"
 cd "$directory"
 
 use training_data.csv, clear
