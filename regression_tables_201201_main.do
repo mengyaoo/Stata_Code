@@ -1,7 +1,7 @@
 **********************************
 * Corporate Citizen
 * Regression Tables
-* Last updated 11/12/2020
+* Last updated 12/01/2020
 **********************************
 
 set more off, permanently
