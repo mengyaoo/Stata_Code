@@ -135,19 +135,19 @@ esttab using 2_output/table_cross_party.rtf, replace label title(Cross Sectional
 ** table cross section: telework
 local control demo_asian population_log establishment_log 
 eststo clear
-eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 , absorb(county_fips#date) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 , absorb(state_fips#date) vce(cluster state_fips)
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "All"
-eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.29 & !missing(teleworkable_emp_establish), absorb(statedayFE#date) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.29 & !missing(teleworkable_emp_establish), absorb(state_fips#date) vce(cluster state_fips)
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "25%"
-eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.33 & !missing(teleworkable_emp_establish), absorb(statedayFE#date) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.33 & !missing(teleworkable_emp_establish), absorb(state_fips#date) vce(cluster state_fips)
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "50%"
-eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.38 & !missing(teleworkable_emp_establish), absorb(statedayFE#date) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio  c.exposure_total_scaled   `control'  if prepolicy_20day==1 & teleworkable_emp_establish>0.38 & !missing(teleworkable_emp_establish), absorb(state_fips#date) vce(cluster state_fips)
 estadd local statedayFE "Yes"
 estadd local cluster "State"
 estadd local sample "75%"
