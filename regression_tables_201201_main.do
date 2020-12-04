@@ -249,7 +249,7 @@ esttab using 201201_main/table_appendix_country.tex, replace label title(Robustn
 ** Robustness by binary variable
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
 eststo clear
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day i.any_exposure_binary i.prepolicy_20day#i.any_exposure_binary  `control' i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish , absorb(city_i#date zipcode) vce(cluster state_fips)
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day i.any_exposure_binary i.prepolicy_20day#i.any_exposure_binary  `control' i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish , absorb(state_fips#date city_i) vce(cluster state_fips)
 estadd local cityFE "Yes"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
