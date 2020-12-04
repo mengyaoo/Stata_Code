@@ -88,16 +88,6 @@ esttab using 201201_main/table_robust_placebo.tex, replace label title(Robustnes
 ** Cross sectional A: Trust
 local control demo_asian population_log  establishment_log teleworkable_emp_establish
 eststo clear
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if social_capital_split2==1, absorb(state_fips#date city_i) vce(cluster state_fips)
-estadd local cityFE "Yes"
-estadd local statedayFE "Yes"
-estadd local cluster "State"
-estadd local sample "Low Social Capital"
-eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if social_capital_split2==2, absorb(state_fips#date city_i) vce(cluster state_fips)
-estadd local cityFE "Yes"
-estadd local statedayFE "Yes"
-estadd local cluster "State"
-estadd local sample "High Social Capital"
 eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled  `control'  i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish if any_exposure_binary==0 | boardex_exposure_fraction_split3==1, absorb(state_fips#date city_i) vce(cluster state_fips)
 estadd local cityFE "Yes"
 estadd local statedayFE "Yes"
