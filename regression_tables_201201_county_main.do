@@ -7,7 +7,7 @@
 set more off, permanently
 clear all
 
-global directory "/shared/share_lisa-he"
+global directory "/shared/share_lisa-he/county"
 cd "$directory"
 
 
