@@ -26,6 +26,10 @@ eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled 
 estadd local countyFE "Yes"
 estadd local statedayFE "Yes"
 estadd local cluster "State"
+eststo: qui reghdfe device_home_ratio i.prepolicy_20day c.exposure_total_scaled i.prepolicy_20day#c.exposure_total_scaled i.prepolicy_20day#c.social_capital_county i.prepolicy_20day#c.deaths  i.prepolicy_20day#c.cases `control' c.deaths c.cases c.social_capital_county i.prepolicy_20day#c.demo_asian i.prepolicy_20day#c.population_log i.prepolicy_20day#c.establishment_log i.prepolicy_20day#c.teleworkable_emp_establish, absorb(state_fips#date county_fips) vce(cluster state_fips)
+estadd local countyFE "Yes"
+estadd local statedayFE "Yes"
+estadd local cluster "State"
 esttab using 201201_main/table_main.rtf, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a countyFE statedayFE cluster, label("N" "Adj. R-squared" "County FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day social_capital_county exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
 ** only for this table I include below the same output but in latex format
 esttab using 201201_main/table_main.tex, replace label title(Change in Stay-at-Home Ratio 20 Days before Policy Intervention) noobs s(N r2_a countyFE statedayFE cluster, label("N" "Adj. R-squared" "County FE" "State-Day FE"  "Clusters" ) fmt(0 %9.3f)) star(* .10 ** .05 *** .01) nocon b(3) drop(_cons 0.prepolicy_20day* demo_asian population_log  establishment_log teleworkable_emp_establish 1.prepolicy_20day social_capital_county exposure_total_scaled) order(1.prepolicy_20day#c.exposure_total_scaled 1.prepolicy_20day  1.prepolicy_20day#c.social_capital_county  1.prepolicy_20day#c.cases cases 1.prepolicy_20day#c.deaths deaths)
