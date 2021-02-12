@@ -17,7 +17,7 @@ arima close if time<=(td(01jan2021)), arima(0,1,1) noconstant
 predict predclose_b, dynamic(td(04jan2021)) 
 list predclose_b if t >= td(01=4jan2021) & t < td(09jan2021)
 
-arima close if time<=(td(01jan2021)), arima(0,1,0) noconstant
+arima close if time<=(td(01jan2021)), arima(1,1,1) noconstant
 predict predclose_c, dynamic(td(04jan2021)) 
 list predclose_c if t >= td(04jan2021) & t < td(09jan2021)
 
